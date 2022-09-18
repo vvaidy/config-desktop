@@ -13,4 +13,24 @@
       - vim-nox
       - figlet
       - emacs
-      
+      - dconf-cli
+      - imagemagick
+      - pngcrush
+
+  
+  - name: copy in custom wallpaper
+    copy:
+      src: assets/downtown-manhattan.png
+      dest: /usr/share/backgrounds/downtown-manhattan.png
+      owner: root
+      group: root
+
+  - name: set custom wallpaper
+    dconf:
+      key: "/org/gnome/desktop/background/picture-uri"
+      value: "'file:///usr/share/backgrounds/downtown-manhattan.png'"
+  
+  - name: set wallpaper position
+    dconf:
+      key: "/org/gnome/desktop/background/piture-options"
+      value: "'zoom'"
